@@ -13,13 +13,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
+    //el browser es el enrutador, tiene toda la logica para saber en q pagina esta el usuario
    <BrowserRouter> 
+   {/*siempre espra q agregue las rutas*/}
+    {/*el nav debe ir por fuera xq es el componente q siempre se va a repetir*/}
    <Menu></Menu>
     <Routes>
       <Route path="/" element={<Index></Index>}></Route>
       <Route path="/administrador" element={<Administrador></Administrador>}></Route>
       <Route path="/administrador/crear" element={<FormularioProducto></FormularioProducto>}></Route>
       <Route path="/administrador/editar" element={<FormularioProducto></FormularioProducto>}></Route>
+      {/*el * es un comodin, siempre que ingresen algo q no sea una ruta derivara a esa pagina*/}
       <Route path="*" element={<Error404></Error404>}></Route>
     </Routes> 
     <Footer></Footer>
