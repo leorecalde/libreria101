@@ -6,7 +6,7 @@ import {
   obtenerProductoApi,
 } from "../../../helpers/queris";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const FormularioProducto = ({ titulo, estoyCreando }) => {
@@ -19,6 +19,7 @@ const FormularioProducto = ({ titulo, estoyCreando }) => {
   } = useForm();
 
   const { id } = useParams();
+  const navegacion = useNavigate();
 
 
   useEffect(() => {
@@ -72,6 +73,9 @@ const FormularioProducto = ({ titulo, estoyCreando }) => {
           text: `El producto ${producto.nombreProducto}, fue modificado con éxito!`,
           icon: "success",
         });
+        //como redireccionar a la pagina anterior
+        navegacion('/Administrador')
+      
       } else {
         Swal.fire({
           title: "Ocurrio un error!",

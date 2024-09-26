@@ -51,12 +51,12 @@
       "id": 127
     },
     {
-      "nombreProducto": "fewwf",
-      "marca": "fasdf",
-      "precio": "55",
+      "nombreProducto": "lapices ",
+      "marca": "bic",
+      "precio": "2900",
       "imagen": "https://geant.vteximg.com.br/arquivos/ids/188517-1000-1000/851178-1.jpg?v=636214594144130000",
-      "categoria": "Cuadernos",
-      "descripcion_breve": "vsdvsd",
+      "categoria": "Escritura",
+      "descripcion_breve": "hola ",
       "descripcion_amplia": "sdvgsgshdhjfjgykuliñkfgjdhsghsadgdagdddddddddddddddddddddddddd",
       "id": 128
     },
@@ -67,7 +67,7 @@
       "imagen": "https://www.salonlaura.com.uy/wp-content/uploads/2021/03/Fibras-Faber-Castell-600x600.jpg",
       "categoria": "Escritura",
       "descripcion_breve": "fibras de colores",
-      "descripcion_amplia": "micro fibras de colores, pra todo tipo de papel set x 10 colores",
+      "descripcion_amplia": "micro fibras de colores, para todo tipo de papel set x 10 colores",
       "id": 129
     }
   ]
