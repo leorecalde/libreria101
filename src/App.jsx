@@ -11,14 +11,18 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login2 from "./components/pages/Login2";
+import { useState } from "react";
 
 function App() {
+
+  const usuario = JSON.parse(sessionStorage.getItem('libreria101')) || "";
+  const [usuarioLogeado, setUsuarioLogueado] = useState(usuario);
   return (
     //el browser es el enrutador, tiene toda la logica para saber en q pagina esta el usuario
     <BrowserRouter>
       {/*siempre espra q agregue las rutas*/}
       {/*el nav debe ir por fuera xq es el componente q siempre se va a repetir*/}
-      <Menu></Menu>
+      <Menu usuarioLogeado={usuarioLogeado} setUsuarioLogueado0={setUsuarioLogueado}></Menu>
       <Routes>
         <Route path="/" element={<Index></Index>}></Route>
         <Route
@@ -33,7 +37,7 @@ function App() {
           path="/administrador/editar/:id"
           element={<FormularioProducto titulo={'Editar producto'} estoyCreando={false}></FormularioProducto>}
         ></Route>
-        <Route path="/login" element={<Login2></Login2>}></Route>
+        <Route path="/login" element={<Login2 setUsuarioLogueado={setUsuarioLogueado}></Login2>}></Route>
         {/*el * es un comodin, siempre que ingresen algo q no sea una ruta derivara a esa pagina*/}
         <Route path="*" element={<Error404></Error404>}></Route>
       </Routes>

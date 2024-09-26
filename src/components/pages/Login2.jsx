@@ -3,8 +3,11 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { useForm } from "react-hook-form";
+import { login } from "../../helpers/queris";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-const Login2 = () => {
+const Login2 = ({setUsuarioLogueado}) => {
   const {
     register,
     handleSubmit,
@@ -12,8 +15,27 @@ const Login2 = () => {
     formState: { errors },
   } = useForm();
 
+  const navegacion = useNavigate();
+
   const onSubmit = (data) => {
-    reset()
+    console.log(data)
+    if (login(data)) {
+      Swal.fire({
+        title: "Bienvenido!",
+        text: `Ingresaste al panel de Administración de Libreria101!`,
+        icon: "success",
+      });
+      //guardar el usuario en el state
+      setUsuarioLogueado(data.email)
+      //redireccionar a la page administrador
+      navegacion("/administrador");
+    } else {
+      Swal.fire({
+        title: "Ocurrio un error!",
+        text: `Email y/ contraseña incorrectas`,
+        icon: "error",
+      });
+    }
   };
 
   return (
@@ -31,8 +53,10 @@ const Login2 = () => {
                   value: 50,
                   message: "excediste el maximo de caracteres",
                 },
-                pattern:
-                  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:a-z0-9?\.)+a-z0-9?$/,
+                pattern: {
+                  value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
+                  message: "el formato de email q ingresaste es inválido",
+                },
               })}
               type="email"
               placeholder="pepitojuarez@gmail.com"

@@ -82,3 +82,21 @@ export const borrarProductoApi = async (id) => {
 };
 
 
+//logica login
+
+const userAdm = {
+  email: 'admin@libreria101.com',
+  password: '123Aa$123'
+}
+
+export const login = (usuario) => {
+  if(
+    usuario.email === userAdm.email &&
+    usuario.password === userAdm.password
+  ){
+    sessionStorage.setItem('libreria101', JSON.stringify(usuario.email));
+    return true;
+  }else{
+    return false
+  }
+}
