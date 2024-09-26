@@ -27,11 +27,11 @@ function App() {
         ></Route>
         <Route
           path="/administrador/crear"
-          element={<FormularioProducto></FormularioProducto>}
+          element={<FormularioProducto titulo={'Crear Producto'} estoyCreando={true}></FormularioProducto>}
         ></Route>
         <Route
-          path="/administrador/editar"
-          element={<FormularioProducto></FormularioProducto>}
+          path="/administrador/editar/:id"
+          element={<FormularioProducto titulo={'Editar producto'} estoyCreando={false}></FormularioProducto>}
         ></Route>
         <Route path="/login" element={<Login2></Login2>}></Route>
         {/*el * es un comodin, siempre que ingresen algo q no sea una ruta derivara a esa pagina*/}

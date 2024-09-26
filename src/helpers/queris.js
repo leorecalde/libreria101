@@ -38,3 +38,34 @@ export const leerProductosApi = async () => {
     return false;
   }
 };
+
+//get q devuelve un producto en particular
+export const obtenerProductoApi = async (id) => {
+  try {
+    const respuesta = await fetch(URLProductos+'/'+id);
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+
+//solicitud PUT
+export const editarProductoApi = async (productoEditado, id) => {
+  try {
+    const respuesta = await fetch(URLProductos+'/'+id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productoEditado),
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+
