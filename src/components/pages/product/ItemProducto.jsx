@@ -1,7 +1,46 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { borrarProductoApi, leerProductosApi } from "../../../helpers/queris";
+import Swal from "sweetalert2";
 
-const ItemProducto = ({producto, fila}) => {
+const ItemProducto = ({producto, fila, setProductos}) => {
+
+  const borrarProducto = async () => {
+    // Mostrar el alert de confirmación
+    Swal.fire({
+      title: "Estás seguro de que quieres borrar este artículo?",
+      text: "Luego no podrás revertirlo",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, bórralo!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        // Llamar a la API para borrar el producto
+        const respuesta = await borrarProductoApi(producto.id);
+        if (respuesta.status === 200) {
+          Swal.fire({
+            title: "Producto borrado correctamente!",
+            text: `El producto ${producto.nombreProducto}, fue eliminado con éxito!`,
+            icon: "success",
+          });
+          const productosActualizados = await leerProductosApi();
+          if (productosActualizados.status === 200) {
+            const respuestaProductos = await productosActualizados.json();
+            setProductos(respuestaProductos);
+          }
+        } else {
+          Swal.fire({
+            title: "Ocurrió un error!",
+            text: `El producto ${producto.nombreProducto}, no pudo ser eliminado, reintenta en unos minutos.`,
+            icon: "error",
+          });
+        }
+      }
+    });
+  };
+  
     
     return (
         <tr>
@@ -20,7 +59,7 @@ const ItemProducto = ({producto, fila}) => {
           <Link to={`/administrador/editar/${producto.id}`} className="btn btn-warning me-lg-2">
             <i className="bi bi-pencil-square"></i>
           </Link>
-          <Button variant="danger" >
+          <Button variant="danger"  onClick={borrarProducto}>
             <i className="bi bi-trash"></i>
           </Button>
         </td>

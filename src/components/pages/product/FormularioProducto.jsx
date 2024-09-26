@@ -67,7 +67,7 @@ const FormularioProducto = ({ titulo, estoyCreando }) => {
     } else {
       //solicitar a la api editar el producto
       const respuesta = await editarProductoApi(producto, id);
-      if (respuesta === 200) {
+      if (respuesta.status === 200) {
         Swal.fire({
           title: "Producto Modificado!",
           text: `El producto ${producto.nombreProducto}, fue modificado con éxito!`,

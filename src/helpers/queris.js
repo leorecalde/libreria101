@@ -68,4 +68,17 @@ export const editarProductoApi = async (productoEditado, id) => {
   }
 };
 
+//delete
+export const borrarProductoApi = async (id) => {
+  try {
+    const respuesta = await fetch(URLProductos+'/'+id, {
+      method: "DELETE",
+    });
+    return respuesta;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
 
