@@ -17,6 +17,7 @@ function App() {
 
   const usuario = JSON.parse(sessionStorage.getItem('libreria101')) || "";
   const [usuarioLogeado, setUsuarioLogueado] = useState(usuario);
+  
   return (
     //el browser es el enrutador, tiene toda la logica para saber en q pagina esta el usuario
     <BrowserRouter>

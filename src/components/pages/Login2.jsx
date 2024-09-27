@@ -7,7 +7,7 @@ import { login } from "../../helpers/queris";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const Login2 = ({setUsuarioLogueado}) => {
+const Login2 = ({ setUsuarioLogueado }) => {
   const {
     register,
     handleSubmit,
@@ -18,7 +18,7 @@ const Login2 = ({setUsuarioLogueado}) => {
   const navegacion = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     if (login(data)) {
       Swal.fire({
         title: "Bienvenido!",
@@ -26,7 +26,7 @@ const Login2 = ({setUsuarioLogueado}) => {
         icon: "success",
       });
       //guardar el usuario en el state
-      setUsuarioLogueado(data.email)
+      setUsuarioLogueado(data.email);
       //redireccionar a la page administrador
       navegacion("/administrador");
     } else {
@@ -72,7 +72,7 @@ const Login2 = ({setUsuarioLogueado}) => {
           </Form.Label>
           <Col sm="10">
             <Form.Control
-              {...register("contrasenia", {
+              {...register("password", {
                 minLength: {
                   value: 8,
                   message: "la contraseña debe tener un minimo de 8 carácteres",
