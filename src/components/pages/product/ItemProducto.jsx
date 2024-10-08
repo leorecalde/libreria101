@@ -18,7 +18,7 @@ const ItemProducto = ({producto, fila, setProductos}) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         // Llamar a la API para borrar el producto
-        const respuesta = await borrarProductoApi(producto.id);
+        const respuesta = await borrarProductoApi(producto._id);
         if (respuesta.status === 200) {
           Swal.fire({
             title: "Producto borrado correctamente!",
@@ -56,7 +56,7 @@ const ItemProducto = ({producto, fila, setProductos}) => {
         </td>
         <td>{producto.categoria}</td>
         <td className="text-center">
-          <Link to={`/administrador/editar/${producto.id}`} className="btn btn-warning me-lg-2">
+          <Link to={`/administrador/editar/${producto._id}`} className="btn btn-warning me-lg-2">
             <i className="bi bi-pencil-square"></i>
           </Link>
           <Button variant="danger"  onClick={borrarProducto}>

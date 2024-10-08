@@ -31,9 +31,11 @@ const FormularioProducto = ({ titulo, estoyCreando }) => {
 
   const cargarProductoEnFormulario = async () => {
     const respuesta = await obtenerProductoApi(id);
+    console.log(await respuesta)
     if (respuesta.status === 200) {
       //rellenar el formulario
       const datoProducto = await respuesta.json();
+      console.log(datoProducto)
       //cargar los datos
       setValue("nombreProducto", datoProducto.nombreProducto),
         setValue("precio", datoProducto.precio),
